@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,24 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // 检查是否已登录
+    fetch("/api/auth/me").then(async (res) => {
+      if (res.ok) {
+        router.replace("/admin");
+      }
+    });
+
+    // 检查是否有任何用户
+    fetch("/api/auth/check-users")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.isEmpty) {
+          router.replace("/auth/register");
+        }
+      });
+  }, [router]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
