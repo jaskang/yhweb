@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 import { dbConnect } from "@/lib/mongodb";
 import Admin from "@/models/Admin";
+import DashboardLayout from "@/components/admin/DashboardLayout";
 
 const JWT_SECRET = process.env.JWT_SECRET || "hyweb_secret";
 
@@ -31,5 +32,5 @@ export default async function AdminLayout({
   if (!isAdmin) {
     redirect("/auth/login");
   }
-  return <>{children}</>;
+  return <DashboardLayout>{children}</DashboardLayout>;
 }
