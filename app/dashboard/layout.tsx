@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
 import { dbConnect } from "@/lib/mongodb";
 import Admin from "@/models/Admin";
-import DashboardLayout from "@/components/admin/DashboardLayout";
+import DashboardLayout from "@/components/dashboard/Layout";
 
 const JWT_SECRET = process.env.JWT_SECRET || "hyweb_secret";
 
@@ -20,7 +20,7 @@ export default async function AdminLayout({
     redirect("/auth/register");
   }
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const token = cookieStore.get("admin_token")?.value;
   let isAdmin = false;
   if (token) {
