@@ -9,10 +9,10 @@ export default function AdminPostsPage() {
   const { data: posts, mutate } = useSWR("/api/posts", fetcher);
 
   return (
-    <div className="max-w-3xl mx-auto py-8">
+    <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">文章管理</h2>
-        <Link href="/admin/posts/new">
+        <Link href="/dashboard/posts/new">
           <Button>新建文章</Button>
         </Link>
       </div>

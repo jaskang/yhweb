@@ -9,10 +9,10 @@ export default function AdminPagesPage() {
   const { data: pages } = useSWR("/api/pages", fetcher);
 
   return (
-    <div className="max-w-2xl mx-auto py-8">
+    <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">页面管理</h2>
-        <Link href="/admin/pages/new">
+        <Link href="/dashboard/pages/new">
           <Button>新建页面</Button>
         </Link>
       </div>
